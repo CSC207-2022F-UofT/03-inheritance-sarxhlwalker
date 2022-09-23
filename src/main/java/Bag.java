@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /*
  * This file defines an abstract class named Bag.
  * In this exercise, you will be writing a larger class according to
@@ -14,6 +17,10 @@ public abstract class Bag {
      *       - an array of Strings named contents
      */
 
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private ArrayList<String> contents;
 
 
 
@@ -27,6 +34,12 @@ public abstract class Bag {
      * its contents.)
      */
 
+    public Bag(String color, int capacity){
+        this.color = color;
+        this.capacity = capacity;
+        this.numberOfContents = 0;
+        this.contents = new ArrayList<String>();
+    }
 
 
 
@@ -38,6 +51,17 @@ public abstract class Bag {
      *           - getCapacity
      */
 
+    public String getColor(){
+        return color;
+    }
+
+    public int getNumberOfContents(){
+        return numberOfContents;
+    }
+
+    public int getCapacity(){
+        return capacity;
+    }
 
 
 
@@ -46,7 +70,9 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
+    public void setColor(String color){
+        this.color = color;
+    }
 
 
 
@@ -60,6 +86,14 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
+
+    public boolean addItem(String item){
+        if (this.numberOfContents < this.capacity){
+            this.contents.add(item);
+            this.numberOfContents++;
+        }
+        return false;
+    }
 
 
 
@@ -76,6 +110,15 @@ public abstract class Bag {
      * @return
      */
 
+    public String popItem(){
+        if (this.contents.size() > 0){
+            String popped = this.contents.get(this.contents.size() - 1);
+            this.contents.remove(this.contents.size() - 1);
+            this.numberOfContents--;
+            return popped;
+        }
+        return null;
+    }
 
 
 
@@ -87,7 +130,7 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
-
+        this.capacity += n;
     }
 
     /**
