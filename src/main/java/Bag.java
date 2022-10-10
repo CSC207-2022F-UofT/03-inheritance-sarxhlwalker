@@ -91,6 +91,7 @@ public abstract class Bag {
         if (this.numberOfContents < this.capacity){
             this.contents.add(item);
             this.numberOfContents++;
+            return true;
         }
         return false;
     }
